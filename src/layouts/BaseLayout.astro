@@ -1,4 +1,6 @@
 ---
+import '../styles/global.css';
+
 interface Props {
     title: string;
     description: string;
@@ -68,9 +70,6 @@ const schemaOrg = {
     <meta property="og:locale" content="zh_CN">
     <meta name="robots" content="index, follow">
     <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
-    <style is:global>
-        @import url('../styles/global.css');
-    </style>
 </head>
 <body>
 

@@ -51,12 +51,11 @@ const icon = iconMap[advantage.id] || "⭐";
 .adv-title{text-align:center;font-size:2.5rem;margin-bottom:0.5rem;color:#0f172a}
 .adv-subtitle{text-align:center;color:#64748b;font-size:1.1rem;margin-bottom:3rem}
 .adv-title::after{content:'';display:block;width:60px;height:4px;background:linear-gradient(90deg,#ef4444,#f97316);margin:1rem auto 0;border-radius:2px}
-.adv-text{font-size:1.05rem;color:#334155;line-height:1.9}
-.adv-text>p:first-child>img{max-width:100%;height:auto;border-radius:16px;margin:0 auto 3rem;display:block;box-shadow:0 20px 50px rgba(0,0,0,0.12)}
 /* Markdown 标准排版 */
 :global(.adv-text){font-size:1.05rem;color:#334155;line-height:1.9}
 :global(.adv-text p){margin-bottom:1.5em;text-indent:2em}
 :global(.adv-text p:first-of-type){margin-top:0}
+:global(.adv-text>p:first-child>img){max-width:100%;height:auto;border-radius:16px;margin:0 auto 3rem;display:block;box-shadow:0 20px 50px rgba(0,0,0,0.12)}
 :global(.adv-text h3){font-size:1.35rem;font-weight:700;color:#0f172a;margin:2.5rem 0 1rem;padding-bottom:0.5rem;border-bottom:2px solid #e2e8f0}
 :global(.adv-text h3:first-child){margin-top:0}
 :global(.adv-text ul),:global(.adv-text ol){margin:1em 0 1.5em 1.5em;list-style:disc}
