@@ -23,7 +23,7 @@ const iconMap: Record<string, string> = {
 ---
 
 <BaseLayout
-    title="西藏福海醇酒业有限公司 | 福海醇酒青稞酒官网 | 西藏酒厂 | 西藏白酒 | 青稞酒贴牌加盟定制OEM"
+    title="西藏酒厂 | 西藏福海醇酒业有限公司 | 西藏白酒 | 西藏青稞酒贴牌加盟定制价格表OEM"
     description="西藏福海醇酒业有限公司位于拉萨市曲水县，是一座花园式的青稞酒厂。传承西藏传统酿酒工艺，结合现代技术，酿造口感醇正的青稞白酒。提供青稞酒贴牌、加盟、定制、OEM服务。"
     canonical="https://www.fuhaichun.cn/"
     activeNav="home"
@@ -213,48 +213,11 @@ const iconMap: Record<string, string> = {
 </style>
 
 <script is:inline>
-// Product Lightbox
+// Product Lightbox - disabled, image now links to detail page
 (function() {
     var lightbox = document.getElementById('product-lightbox');
     if (!lightbox) return;
-    var lbImg = document.getElementById('product-lightbox-img');
-    var lbCap = document.getElementById('product-lightbox-caption');
-    var btnClose = lightbox.querySelector('.product-lightbox-close');
-    var inner = lightbox.querySelector('.product-lightbox-inner');
     
-    function openLightbox(src, alt, title) {
-        lbImg.src = src;
-        lbImg.alt = alt || '';
-        lbCap.textContent = title || alt || '';
-        lightbox.removeAttribute('hidden');
-        document.body.style.overflow = 'hidden';
-    }
-    function closeLightbox() {
-        lightbox.setAttribute('hidden', '');
-        lbImg.removeAttribute('src');
-        document.body.style.overflow = '';
-    }
-    
-    // Only attach lightbox to .product-img elements (not .product-info links)
-    document.querySelectorAll('.product-img').forEach(function(imgWrap) {
-        var img = imgWrap.querySelector('img');
-        var card = imgWrap.closest('.product-card');
-        var titleEl = card ? card.querySelector('.product-info h3') : null;
-        if (img) {
-            imgWrap.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                openLightbox(img.currentSrc || img.src, img.alt || '', titleEl ? titleEl.textContent.trim() : '');
-            });
-        }
-    });
-    
-    lightbox.addEventListener('click', function(e) {
-        if (e.target === lightbox || e.target === btnClose) closeLightbox();
-    });
-    inner.addEventListener('click', function(e) { e.stopPropagation(); });
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && !lightbox.hasAttribute('hidden')) closeLightbox();
-    });
+    // Removed click handler on .product-img to allow direct navigation to product detail page
 })();
 </script>
