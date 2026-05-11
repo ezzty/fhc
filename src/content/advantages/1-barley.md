@@ -5,7 +5,7 @@ subtitle: "源自海拔3000米以上的纯净青稞"
 icon: ""
 ---
 
-![雪域高原原料](/images/advantage/barley.jpg)
+![雪域高原原料](https://i.frc.cc/img/m/20260511/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20201227100002_%E5%89%AF%E6%9C%AC.jpg?x-oss-process=style/w950)
 
 ### 高原馈赠 · 纯净之源
 
