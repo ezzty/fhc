@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { getCollection } from 'astro:content';
+
+const products = (await getCollection('products')).sort((a, b) => a.data.sort - b.data.sort);
+
+function getProductImage(product: any): string {
+    if (product.data.image) return product.data.image;
+    const match = product.body.match(/!\[.*?\]\(([^)]+)\)/);
+    return match ? match[1] : '/images/other/fhclogo.png';
+}
+---
+
+<BaseLayout
+    title="产品中心 | 福海醇青稞酒 | 西藏福海醇酒业有限公司"
+    description="福海醇酒业产品中心，提供藏梦、藏瑞、藏参王、雪域朝贡等系列青稞白酒，口感醇厚柔和、优雅绵甜。"
+    canonical="https://www.fuhaichun.cn/products/"
+    ogTitle="产品中心 | 福海醇酒青稞酒官网"
+    activeNav="products"
+>
+
+<section class="products-page">
+    <div class="container">
+        <h1 class="section-title">产品中心</h1>
+        <p class="products-subtitle">传承西藏传统酿酒工艺，精选雪域高原优质青稞</p>
+        <div class="product-grid">
+            {products.map((product) => (
+                <ProductCard
+                    name={product.data.name}
+                    image={getProductImage(product)}
+                    slug={product.id}
+                    price={product.data.price}
+                />
+            ))}
+        </div>
+    </div>
+</section>
+
+</BaseLayout>
+
+<style>
+.products-page{margin-top:137px;padding:4rem 2rem 6rem;background:#fff;min-height:calc(100vh - 137px)}
+.products-subtitle{text-align:center;color:#64748b;font-size:1.1rem;margin-top:-2.5rem;margin-bottom:3rem}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:2rem}
+
+@media(max-width:900px){
+    .products-page{padding:2rem 1.5rem 4rem}
+    .section-title{font-size:1.8rem}
+    .product-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1.25rem}
+}
+</style>

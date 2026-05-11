@@ -1,0 +1,33 @@
+---
+interface Props {
+    name: string;
+    image: string;
+    slug: string;
+    price: number;
+}
+
+const { name, image, slug, price } = Astro.props;
+const detailUrl = `/product/${slug}/`;
+---
+
+<div class="product-card">
+    <a href={detailUrl} class="product-img">
+        <img src={image} alt={name} loading="lazy">
+    </a>
+    <a href={detailUrl} class="product-info">
+        <h3>{name}</h3>
+        <p class="product-price">¥{price}</p>
+    </a>
+</div>
+
+<style>
+.product-card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.06);transition:transform 0.3s,box-shadow 0.3s}
+.product-card:hover{transform:translateY(-8px);box-shadow:0 12px 32px rgba(0,0,0,0.12)}
+.product-img{width:100%;aspect-ratio:1/1;background:#fff;display:flex;align-items:center;justify-content:center;padding:1.5rem;overflow:hidden;cursor:pointer;border:1px solid #e8e8e8;border-bottom:none;border-radius:12px 12px 0 0;text-decoration:none}
+.product-img img{width:100%;height:100%;object-fit:contain;transition:transform 0.3s}
+.product-card:hover .product-img img{transform:scale(1.05)}
+.product-info{display:block;padding:1.25rem;text-align:center;background:linear-gradient(180deg,#1e293b 0%,#0f172a 100%);text-decoration:none;cursor:pointer;transition:background 0.2s}
+.product-info:hover{background:linear-gradient(180deg,#253349 0%,#162032 100%)}
+.product-info h3{color:#fff;margin-bottom:0.25rem;font-size:1.05rem}
+.product-price{color:#f5c842;font-size:1.1rem;font-weight:bold}
+</style>

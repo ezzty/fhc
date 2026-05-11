@@ -1,0 +1,201 @@
+{
+  "main": {
+    "id": "2b9bfc2faa5c0dc1",
+    "type": "split",
+    "children": [
+      {
+        "id": "ffdb637b263c07c0",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6c5ad39ed25282f3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "12-gyjn.md",
+                "mode": "source",
+                "source": true
+              },
+              "icon": "lucide-file",
+              "title": "12-gyjn"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "9daff8cd02e05a28",
+    "type": "split",
+    "children": [
+      {
+        "id": "0a6a46fc8acaef94",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "282e5f092cfe19bf",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "3187d56c3b1fcb85",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "d376b2bc62fb29e0",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "010cee6e740d8919",
+    "type": "split",
+    "children": [
+      {
+        "id": "8056ea834664a724",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "84fd9c078a7a1cf8",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "2-zangrui.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "2-zangrui 的反向链接列表"
+            }
+          },
+          {
+            "id": "e66c8abc730faaeb",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "2-zangrui.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "2-zangrui 的出链列表"
+            }
+          },
+          {
+            "id": "2bd3d1c0d01659de",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "c5171c6ce2a5b0bd",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "c0534ba7d13e141d",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "2-zangrui.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "2-zangrui 的大纲"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false
+    }
+  },
+  "active": "6c5ad39ed25282f3",
+  "lastOpenFiles": [
+    "11-baota.md",
+    "12-gyjn.md",
+    "10-4lihe.md",
+    "9-zangzun520.md",
+    "1-zangmeng.md",
+    "2-zangrui.md",
+    "3-zangshenwang.md",
+    "4-xueyuchaogong10.md",
+    "5-tianhe.md",
+    "6-shenghe.md",
+    "7-banjinzhuang.md",
+    "8-zhizun.md"
+  ]
+}

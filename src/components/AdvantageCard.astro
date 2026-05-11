@@ -1,0 +1,25 @@
+---
+interface Props {
+    title: string;
+    icon: string;
+    desc: string;
+    slug: string;
+}
+
+const { title, icon, desc, slug } = Astro.props;
+const detailUrl = `/advantage/${slug}/`;
+---
+
+<a href={detailUrl} class="advantage-card">
+    <div class="adv-icon">{icon}</div>
+    <h3>{title}</h3>
+    <p>{desc}</p>
+</a>
+
+<style>
+.advantage-card{text-align:center;padding:2.5rem 1.5rem;background:#fff;border-radius:16px;border:1px solid #e2e8f0;box-shadow:0 4px 16px rgba(0,0,0,0.04);transition:transform 0.3s,box-shadow 0.3s;text-decoration:none;display:block;color:inherit}
+.advantage-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.1);border-color:transparent}
+.adv-icon{font-size:3rem;margin-bottom:1rem}
+.advantage-card h3{font-size:1.3rem;margin-bottom:0.75rem;color:#0f172a}
+.advantage-card p{color:#64748b;font-size:0.95rem}
+</style>

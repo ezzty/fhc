@@ -1,0 +1,139 @@
+---
+interface Props {
+    title: string;
+    description: string;
+    keywords?: string;
+    canonical: string;
+    ogTitle?: string;
+    ogDescription?: string;
+    ogImage?: string;
+    activeNav?: string;
+}
+
+const {
+    title,
+    description,
+    keywords = "福海醇,青稞酒,西藏酒厂,西藏白酒,青稞酒贴牌,青稞酒加盟,青稞酒定制,OEM贴牌,西藏青稞白酒,拉萨酒厂",
+    canonical,
+    ogTitle = title,
+    ogDescription = description,
+    ogImage = "https://www.fuhaichun.cn/images/products/藏梦.jpg",
+    activeNav = ""
+} = Astro.props;
+
+const SITE_URL = "https://www.fuhaichun.cn";
+const PHONE = "186 0288 1137";
+const PHONE_RAW = "18602881137";
+
+const navItems = [
+    { label: "首页", href: "/", id: "home" },
+    { label: "关于我们", href: "/about/", id: "about" },
+    { label: "产品中心", href: "/products/", id: "products" },
+    { label: "核心优势", href: "/advantages/", id: "features" },
+    { label: "联系我们", href: "/#contact", id: "contact" },
+];
+
+const schemaOrg = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "西藏福海醇酒业有限公司",
+    "url": SITE_URL,
+    "telephone": PHONE_RAW,
+    "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "拉萨市",
+        "addressRegion": "西藏自治区",
+        "streetAddress": "曲水县县城工业园内"
+    },
+    "description": "西藏传统酿酒工艺和现代技术相结合，酿造口感醇正的青稞白酒",
+    "brand": { "@type": "Brand", "name": "福海醇" }
+};
+---
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <meta name="description" content={description}>
+    <meta name="keywords" content={keywords}>
+    <link rel="canonical" href={canonical}>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" href="/favicon.ico">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content={ogTitle}>
+    <meta property="og:description" content={ogDescription}>
+    <meta property="og:image" content={ogImage}>
+    <meta property="og:locale" content="zh_CN">
+    <meta name="robots" content="index, follow">
+    <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
+    <style is:global>
+        @import url('../styles/global.css');
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-shell">
+        <div class="header-content">
+            <a href="/" class="logo"><img src="/images/other/fhclogo.png" alt="福海醇"></a>
+            <nav class="header-nav">
+                <ul>
+                    {navItems.map(item => (
+                        <li>
+                            <a href={item.href} class:list={[{ active: activeNav === item.id }]}>{item.label}</a>
+                        </li>
+                    ))}
+                </ul>
+            </nav>
+            <button class="header-burger" aria-label="菜单"><span></span><span></span><span></span></button>
+        </div>
+    </div>
+</header>
+
+<slot />
+
+<div class="mobile-bottom-bar">
+    <a href={`tel:${PHONE_RAW}`} class="bar-btn call-btn"><span class="btn-icon">📞</span><span>电话咨询</span></a>
+    <button class="bar-btn wechat-btn" onclick="copyWeChat()"><span class="btn-icon">💬</span><span>添加微信</span></button>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="brand">西藏福海醇酒业有限公司</div>
+        <p style="font-size:1.1rem;margin-bottom:0.75rem">📞 {PHONE}（微信同号）</p>
+        <div style="margin-top:1.5rem">
+            <img src="/images/other/15549063769829.jpg" alt="官方微信" style="width:120px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.3)">
+            <p style="margin-top:0.5rem;font-size:0.85rem;opacity:0.7">关注官方微信</p>
+        </div>
+        <p style="margin-top:1.5rem;font-size:0.8rem;opacity:0.5">Copyright © 2019 西藏福海醇酒业有限公司 | 福海醇酒青稞酒官网 | 西藏酒厂 | 西藏白酒 | 青稞酒贴牌加盟定制OEM</p>
+    </div>
+</footer>
+
+<script is:inline>
+    // Header burger menu
+    const burger = document.querySelector('.header-burger');
+    const header = document.querySelector('.site-header');
+    const navLinks = document.querySelectorAll('.header-nav a');
+    if (burger && header) {
+        burger.addEventListener('click', () => header.classList.toggle('site-header--open'));
+        navLinks.forEach(link => link.addEventListener('click', () => header.classList.remove('site-header--open')));
+    }
+    if (header) {
+        window.addEventListener('scroll', () => {
+            window.scrollY > 60 ? header.classList.add('site-header--shrunk') : header.classList.remove('site-header--shrunk');
+        }, { passive: true });
+    }
+    function copyWeChat() {
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText('18602881137').then(() => alert('微信号已复制：18602881137'));
+        } else {
+            alert('请手动添加微信号：18602881137');
+        }
+    }
+    window.copyWeChat = copyWeChat;
+</script>
+
+</body>
+</html>

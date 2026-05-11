@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AdvantageCard from '../../components/AdvantageCard.astro';
+import { getCollection } from 'astro:content';
+
+const advantages = (await getCollection('advantages')).sort((a, b) => a.data.sort - b.data.sort);
+
+const iconMap: Record<string, string> = {
+    "1-barley": "🏔️",
+    "2-brewing": "🏺",
+    "3-factory": "🏭",
+    "4-quality": "✅",
+};
+---
+
+<BaseLayout
+    title="核心优势 | 福海醇青稞酒 | 西藏福海醇酒业有限公司"
+    description="福海醇酒业核心优势：雪域高原原料、传统工艺酿造、花园式酒厂、品质保障，打造西藏青稞白酒典范。"
+    canonical="https://www.fuhaichun.cn/advantages/"
+    ogTitle="核心优势 | 福海醇酒青稞酒官网"
+    activeNav="features"
+>
+
+<section class="advantages-page">
+    <div class="container">
+        <h1 class="section-title">核心优势</h1>
+        <p class="advantages-subtitle">传承西藏千年酿酒文化，以五个"独特"打造高原圣酿</p>
+        <div class="feature-grid">
+            {advantages.map((adv) => (
+                <AdvantageCard
+                    title={adv.data.title}
+                    icon={iconMap[adv.id] || "⭐"}
+                    desc={adv.data.subtitle}
+                    slug={adv.id}
+                />
+            ))}
+        </div>
+    </div>
+</section>
+
+</BaseLayout>
+
+<style>
+.advantages-page{margin-top:137px;padding:4rem 2rem 6rem;background:#fff;min-height:calc(100vh - 137px)}
+.advantages-subtitle{text-align:center;color:#64748b;font-size:1.1rem;margin-top:-2.5rem;margin-bottom:3rem}
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem}
+
+@media(max-width:900px){
+    .advantages-page{padding:2rem 1.5rem 4rem}
+    .section-title{font-size:1.8rem}
+}
+</style>

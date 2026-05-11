@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+    const advantages = await getCollection('advantages');
+    return advantages.map((adv) => ({
+        params: { slug: adv.id },
+        props: { advantage: adv },
+    }));
+}
+
+const { advantage } = Astro.props;
+const { title, subtitle, image } = advantage.data;
+const { Content } = await render(advantage);
+
+const iconMap: Record<string, string> = {
+    "1-barley": "🏔️",
+    "2-brewing": "🏺",
+    "3-factory": "🏭",
+    "4-quality": "✅",
+};
+const icon = iconMap[advantage.id] || "⭐";
+---
+
+<BaseLayout
+    title={`${title} | 西藏福海醇酒业有限公司`}
+    description={subtitle}
+    canonical={`https://www.fuhaichun.cn/advantage/${advantage.id}/`}
+    ogTitle={`${title} | 福海醇酒青稞酒官网`}
+>
+
+<div class="adv-page">
+    <div class="adv-shell">
+        <h1 class="adv-title">{icon} {title}</h1>
+        <p class="adv-subtitle">{subtitle}</p>
+        <div class="adv-hero">
+            <img src={image} alt={title}>
+        </div>
+        <div class="adv-text"><Content /></div>
+        <div class="adv-back">
+            <a href="/advantages/">← 返回核心优势</a>
+        </div>
+    </div>
+</div>
+
+</BaseLayout>
+
+<style>
+.adv-page{margin-top:137px;padding:4rem 2rem 6rem}
+.adv-shell{max-width:900px;margin:0 auto}
+.adv-title{text-align:center;font-size:2.5rem;margin-bottom:0.5rem;color:#0f172a}
+.adv-subtitle{text-align:center;color:#64748b;font-size:1.1rem;margin-bottom:3rem}
+.adv-title::after{content:'';display:block;width:60px;height:4px;background:linear-gradient(90deg,#ef4444,#f97316);margin:1rem auto 0;border-radius:2px}
+.adv-hero{border-radius:16px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,0.12);margin-bottom:3rem}
+.adv-hero img{width:100%;display:block}
+.adv-text{font-size:1.05rem;color:#475569;line-height:1.8}
+.adv-text p{margin-bottom:1.5rem;text-indent:2em}
+.adv-text img{float:left;max-width:45%;margin:0 1.5rem 1rem 0;border-radius:10px}
+.adv-text h3{font-size:1.4rem;color:#1a1a2e;margin:2rem 0 1rem;padding-left:1rem;border-left:4px solid #ef4444}
+.adv-text ul{margin:1rem 0 1.5rem 2rem;color:#475569}
+.adv-text li{margin-bottom:0.5rem}
+.adv-text strong{color:#1a1a2e}
+.adv-back{text-align:center;margin-top:3rem}
+.adv-back a{display:inline-block;padding:0.8rem 2rem;background:linear-gradient(135deg,#ef4444,#f97316);color:#fff;text-decoration:none;border-radius:50px;font-size:1rem;font-weight:600;transition:all 0.3s}
+.adv-back a:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(239,68,68,0.35)}
+
+@media(max-width:900px){
+    .adv-title{font-size:1.8rem}
+    .adv-page{padding:2rem 1.5rem 4rem}
+}
+</style>

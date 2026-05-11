@@ -1,0 +1,260 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProductCard from '../components/ProductCard.astro';
+import AdvantageCard from '../components/AdvantageCard.astro';
+import { getCollection } from 'astro:content';
+
+const products = (await getCollection('products')).sort((a, b) => a.data.sort - b.data.sort);
+const advantages = (await getCollection('advantages')).sort((a, b) => a.data.sort - b.data.sort);
+
+// 提取正文第一张图片，如果没有则用默认
+function getProductImage(product: any): string {
+    if (product.data.image) return product.data.image;
+    const match = product.body.match(/!\[.*?\]\(([^)]+)\)/);
+    return match ? match[1] : '/images/other/fhclogo.png';
+}
+
+const iconMap: Record<string, string> = {
+    "1-barley": "🏔️",
+    "2-brewing": "🏺",
+    "3-factory": "🏭",
+    "4-quality": "✅",
+};
+---
+
+<BaseLayout
+    title="西藏福海醇酒业有限公司 | 福海醇酒青稞酒官网 | 西藏酒厂 | 西藏白酒 | 青稞酒贴牌加盟定制OEM"
+    description="西藏福海醇酒业有限公司位于拉萨市曲水县，是一座花园式的青稞酒厂。传承西藏传统酿酒工艺，结合现代技术，酿造口感醇正的青稞白酒。提供青稞酒贴牌、加盟、定制、OEM服务。"
+    canonical="https://www.fuhaichun.cn/"
+    activeNav="home"
+>
+
+<!-- Hero Banner -->
+<section class="hero" id="home">
+    <div class="hero-slides">
+        <div class="hero-slide"></div>
+        <div class="hero-slide"></div>
+    </div>
+    <div class="hero-overlay"></div>
+</section>
+
+<!-- About -->
+<section class="about" id="about">
+    <div class="container">
+        <h2 class="section-title">关于我们</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>拉萨曲水县工业园内的花园式酒厂</h3>
+                <p>西藏福海醇酒业有限公司位于拉萨市曲水县县城工业园内，是一座花园式的青稞酒厂。</p>
+                <p>福海醇系列青稞酒是西藏传统酿酒工艺和现代技术相结合而生产的青稞白酒。我们依托雪域高原的优质青稞资源，结合独特的酿造技艺，确保每一滴酒都口感醇正，酒香浓郁。</p>
+                <p>多年来，福海醇青稞酒深受广大消费者的喜爱，成为西藏白酒的代表品牌之一。</p>
+                <a href="/about/" class="about-more">了解更多 →</a>
+            </div>
+            <div class="about-image">
+                <img src="/images/products/藏参王.jpg" alt="福海醇青稞酒">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Products -->
+<section class="products" id="products">
+    <div class="container">
+        <h2 class="section-title">产品中心</h2>
+        <div class="product-grid">
+            {products.map((product) => (
+                <ProductCard
+                    name={product.data.name}
+                    image={getProductImage(product)}
+                    slug={product.id}
+                    price={product.data.price}
+                />
+            ))}
+        </div>
+        <div class="products-more">
+            <a href="/products/" class="btn-view-all">查看全部产品 →</a>
+        </div>
+    </div>
+</section>
+
+<!-- Features -->
+<section class="features" id="features">
+    <div class="container">
+        <h2 class="section-title">核心优势</h2>
+        <div class="feature-grid">
+            {advantages.map((adv) => (
+                <AdvantageCard
+                    title={adv.data.title}
+                    icon={iconMap[adv.id] || "⭐"}
+                    desc={adv.data.subtitle}
+                    slug={adv.id}
+                />
+            ))}
+        </div>
+        <div class="products-more">
+            <a href="/advantages/" class="btn-view-all">查看全部优势 →</a>
+        </div>
+    </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+    <div class="container">
+        <h2 class="section-title">联系我们</h2>
+        <div class="contact-content">
+            <div class="contact-info">
+                <h3>西藏福海醇酒业有限公司</h3>
+                <div class="contact-item">
+                    <div class="contact-item-icon">📍</div>
+                    <div class="contact-item-text"><h4>地址</h4><p>拉萨市曲水县县城工业园内</p></div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">📞</div>
+                    <div class="contact-item-text"><h4>电话</h4><p>186 0288 1137（微信同号）</p></div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">📧</div>
+                    <div class="contact-item-text"><h4>业务咨询</h4><p>欢迎全国经销商洽谈合作</p></div>
+                </div>
+            </div>
+            <div class="contact-image">
+                <img src="/images/products/藏尊520.jpg" alt="福海醇酒业" style="width:100%;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.1)">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Product Lightbox -->
+<div id="product-lightbox" class="product-lightbox" role="dialog" aria-modal="true" aria-label="产品大图" hidden>
+    <button type="button" class="product-lightbox-close" aria-label="关闭">&times;</button>
+    <div class="product-lightbox-inner">
+        <img id="product-lightbox-img" src="" alt="">
+        <p id="product-lightbox-caption" class="product-lightbox-caption"></p>
+    </div>
+</div>
+
+<!-- Side Contact (Desktop) -->
+<div class="side-contact">
+    <div class="label">全国咨询热线</div>
+    <div class="phone">186 0288 1137</div>
+    <div class="sub">（微信同号）</div>
+</div>
+
+</BaseLayout>
+
+<style>
+/* Hero */
+.hero{position:relative;aspect-ratio:1920/750;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;margin-top:0;padding-top:137px;overflow:hidden}
+.hero-slides{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1}
+.hero-slide{position:absolute;top:0;left:0;width:100%;height:100%;background-size:cover;background-position:center;opacity:0;animation:slideShow 20s infinite}
+.hero-slide:nth-child(1){background-image:url('/images/banner/f01.jpg');animation-delay:0s}
+.hero-slide:nth-child(2){background-image:url('/images/banner/f02.jpg');animation-delay:7.5s}
+@keyframes slideShow{0%,45%{opacity:1;transform:scale(1)}50%,100%{opacity:0;transform:scale(1.05)}}
+.hero-overlay{position:absolute;top:0;left:0;width:100%;height:100%;z-index:2}
+
+/* About */
+.about{background:#f8fafc}
+.about-content{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.about-text h3{font-size:1.8rem;margin-bottom:1rem;color:#1a1a2e}
+.about-text p{margin-bottom:1rem;color:#475569}
+.about-more{display:inline-block;margin-top:0.5rem;padding:0.6rem 1.5rem;background:linear-gradient(135deg,#ef4444,#f97316);color:#fff;text-decoration:none;font-size:0.95rem;font-weight:600;border-radius:50px;transition:all 0.3s}
+.about-more:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(239,68,68,0.35)}
+.about-image{position:relative;border-radius:12px;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,0.1)}
+.about-image img{width:100%;display:block;transition:transform 0.5s}
+.about-image:hover img{transform:scale(1.03)}
+
+/* Products */
+.products{background:#fff}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:2rem}
+.products-more{text-align:center;margin-top:3rem}
+.btn-view-all{display:inline-block;padding:0.8rem 2rem;background:linear-gradient(135deg,#ef4444,#f97316);color:#fff;text-decoration:none;border-radius:50px;font-size:1rem;font-weight:600;transition:all 0.3s}
+.btn-view-all:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(239,68,68,0.35)}
+
+/* Features - dark themed cards */
+.features{background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);color:#fff}
+.features .section-title{color:#fff}
+.features .advantage-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);box-shadow:none;color:#fff}
+.features .advantage-card:hover{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.12)}
+.features .advantage-card h3{color:#fff}
+.features .advantage-card p{color:#cbd5e1}
+
+/* Contact */
+.contact{background:#f8fafc}
+.contact-content{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.contact-info h3{font-size:1.8rem;margin-bottom:1.5rem;color:#1a1a2e}
+.contact-item{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;padding:1rem;background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
+.contact-item-icon{width:48px;height:48px;border-radius:10px;background:#f1f5f9;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+.contact-item-text h4{font-size:1rem;margin-bottom:0.15rem}
+.contact-item-text p{color:#64748b;font-size:0.9rem}
+
+/* Side Contact */
+.side-contact{position:fixed;right:1.5rem;top:50%;transform:translateY(-50%);z-index:100;background:rgba(15,23,42,0.88);backdrop-filter:blur(8px);padding:1rem 1.25rem;border-radius:12px;color:#fff;text-align:right;box-shadow:0 8px 24px rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.1)}
+.side-contact .label{font-size:0.85rem;color:rgba(255,255,255,0.7);margin-bottom:0.25rem}
+.side-contact .phone{font-size:1.25rem;font-weight:bold;color:#f5c842;line-height:1.3}
+.side-contact .sub{font-size:0.8rem;color:rgba(255,255,255,0.6)}
+
+/* Product Lightbox */
+.product-lightbox{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3rem 1rem 1.5rem;background:rgba(0,0,0,0.88);cursor:zoom-out}
+.product-lightbox[hidden]{display:none !important}
+.product-lightbox-inner{position:relative;max-width:min(96vw,1200px);max-height:calc(100vh - 5rem);cursor:default}
+.product-lightbox-inner img{max-width:100%;max-height:calc(100vh - 7rem);width:auto;height:auto;object-fit:contain;display:block;border-radius:6px;box-shadow:0 8px 40px rgba(0,0,0,0.5)}
+.product-lightbox-caption{margin-top:0.75rem;text-align:center;color:#fff;font-size:1rem}
+.product-lightbox-close{position:absolute;top:0.75rem;right:1rem;z-index:10000;width:2.5rem;height:2.5rem;border:none;border-radius:50%;background:rgba(255,255,255,0.15);color:#fff;font-size:1.5rem;line-height:1;cursor:pointer;transition:background 0.2s}
+.product-lightbox-close:hover{background:#ef4444}
+
+/* Mobile */
+@media(max-width:900px){
+    .side-contact{display:none}
+    .hero-content h1{font-size:2.2rem}
+    .about-content,.contact-content{grid-template-columns:1fr;gap:2rem}
+    .product-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1.25rem}
+    .section-title{font-size:1.8rem}
+}
+</style>
+
+<script is:inline>
+// Product Lightbox
+(function() {
+    var lightbox = document.getElementById('product-lightbox');
+    if (!lightbox) return;
+    var lbImg = document.getElementById('product-lightbox-img');
+    var lbCap = document.getElementById('product-lightbox-caption');
+    var btnClose = lightbox.querySelector('.product-lightbox-close');
+    var inner = lightbox.querySelector('.product-lightbox-inner');
+    
+    function openLightbox(src, alt, title) {
+        lbImg.src = src;
+        lbImg.alt = alt || '';
+        lbCap.textContent = title || alt || '';
+        lightbox.removeAttribute('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+        lightbox.setAttribute('hidden', '');
+        lbImg.removeAttribute('src');
+        document.body.style.overflow = '';
+    }
+    
+    // Only attach lightbox to .product-img elements (not .product-info links)
+    document.querySelectorAll('.product-img').forEach(function(imgWrap) {
+        var img = imgWrap.querySelector('img');
+        var card = imgWrap.closest('.product-card');
+        var titleEl = card ? card.querySelector('.product-info h3') : null;
+        if (img) {
+            imgWrap.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                openLightbox(img.currentSrc || img.src, img.alt || '', titleEl ? titleEl.textContent.trim() : '');
+            });
+        }
+    });
+    
+    lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox || e.target === btnClose) closeLightbox();
+    });
+    inner.addEventListener('click', function(e) { e.stopPropagation(); });
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !lightbox.hasAttribute('hidden')) closeLightbox();
+    });
+})();
+</script>
