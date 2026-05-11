@@ -5,8 +5,6 @@
       <stop offset="100%" stop-color="#B71C1C"/>
     </linearGradient>
   </defs>
-  <!-- 圆角方形底 -->
   <rect x="4" y="4" width="120" height="120" rx="24" ry="24" fill="url(#bg)"/>
-  <!-- 福字 -->
-  <text x="64" y="88" text-anchor="middle" font-family="KaiTi, STKaiti, SimSun, serif" font-size="88" font-weight="bold" fill="#FFFFFF" letter-spacing="0">福</text>
+  <text x="64" y="92" text-anchor="middle" font-family="Noto Serif CJK SC, STKaiti, KaiTi, SimSun, serif" font-size="80" font-weight="bold" fill="#FFFFFF">福</text>
 </svg>
