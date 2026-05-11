@@ -1,6 +1,5 @@
 ---
 title: "雪域高原原料"
-image: "/images/advantage/barley.jpg"
 sort: 1
 subtitle: "源自海拔3000米以上的纯净青稞"
 icon: ""

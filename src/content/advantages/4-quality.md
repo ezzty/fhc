@@ -1,6 +1,5 @@
 ---
 title: "品质保障"
-image: "/images/advantage/quality-hero.jpg"
 sort: 4
 subtitle: "严格的生产流程控制 · 确保每一瓶酒的纯正口感"
 icon: ""

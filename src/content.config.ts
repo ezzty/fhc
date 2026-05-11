@@ -22,7 +22,7 @@ const advantages = defineCollection({
     loader: glob({ pattern: '**/*.md', base: './src/content/advantages' }),
     schema: z.object({
         title: z.string(),
-        image: z.string(),
+        image: z.string().optional(),
         subtitle: z.string(),
         sort: z.number().default(99),
         icon: z.string().default(''),

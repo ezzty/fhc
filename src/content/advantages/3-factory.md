@@ -1,6 +1,5 @@
 ---
 title: "花园式酒厂"
-image: "/images/advantage/factory-hero.jpg"
 sort: 3
 subtitle: "坐落于拉萨曲水县 · 环境优美的现代化酒厂"
 icon: ""

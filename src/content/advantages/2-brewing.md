@@ -1,8 +1,7 @@
 ---
 title: "传统工艺酿造"
-image: "/images/advantage/brewing.jpg"
 sort: 2
-subtitle: "传承千年藏酒技艺 · 融合现代科技"
+subtitle: "传承千年的藏酿技艺"
 icon: ""
 ---
 
