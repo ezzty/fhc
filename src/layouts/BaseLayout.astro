@@ -135,6 +135,13 @@ const schemaOrg = {
         }
     }
     window.copyWeChat = copyWeChat;
+
+    // Mobile: remove OSS image params to prevent overflow
+    if (window.innerWidth < 900) {
+        document.querySelectorAll('img[src*="?x-oss-process"]').forEach(img => {
+            img.src = img.src.split('?')[0];
+        });
+    }
 </script>
 
 </body>
