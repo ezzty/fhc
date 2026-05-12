@@ -6,7 +6,7 @@ a{text-decoration:none;color:inherit}
 img{max-width:100%;height:auto;display:block}
 
 /* ========== Header ========== */
-.site-header{position:fixed;top:0;left:0;right:0;z-index:1000;height:137px;background:url('/images/banner/headerbg.jpeg') left top repeat-x;border-bottom:1px solid rgba(255,255,255,0.08);transition:all 0.3s ease}
+.site-header{position:fixed;top:0;left:0;right:0;z-index:1000;height:137px;background:url('https://i.frc.cc/img/m/20260512/headerbg.jpeg') left top repeat-x;border-bottom:1px solid rgba(255,255,255,0.08);transition:all 0.3s ease}
 .site-header--shrunk{height:68px}
 .site-header--shrunk .logo img{height:36px}
 .site-header::before{display:none}
