@@ -45,6 +45,7 @@ section{padding:5rem 2rem}
 footer{background:#020617;color:#fff;padding:3rem 2rem;text-align:center}
 footer p{margin-bottom:0.5rem;opacity:0.8}
 footer .brand{font-size:1.2rem;font-weight:bold;margin-bottom:1rem;opacity:1}
+footer img{margin:0 auto}
 
 /* ========== Mobile Bottom Bar ========== */
 .mobile-bottom-bar{display:none;position:fixed;bottom:0;left:0;right:0;height:60px;background:#fff;box-shadow:0 -4px 20px rgba(0,0,0,0.15);z-index:10000}
